@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import br.ufc.smartbee.util.GsonConverter;
 import br.ufc.smartbee.util.JPAUtil;
 
-public class GenericDAO {
+public class GenericDAO<T> {
 	EntityManager em = JPAUtil.createEntityManager();
 	
 	public String getListaEntidade(Class<?> classe) {
