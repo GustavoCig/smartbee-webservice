@@ -13,10 +13,10 @@ Its function is to provide the applications developed for the project (Mobile ap
 
 The webservice provides the following URIs:
 
-+ */colmeia:* lista todas as colmeias monitoradas.
++ <b>/colmeia:</b> lista todas as colmeias monitoradas.
 
-+ */colmeia/{ID DA COLMEIA}:* Devolve os últimos dados coletados pelos sensores na colmeia indicada através do parâmetro.
++ <b>/colmeia/{ID DA COLMEIA}:</b> Devolve os últimos dados coletados pelos sensores na colmeia indicada através do parâmetro.
 
-+ */colmeia/:*{ID DA COLMEIA}/info:* Responde informações importantes sobre a colmeia monitorada em foco
++ <b>/colmeia/{ID DA COLMEIA}/info:</b> Responde informações importantes sobre a colmeia monitorada em foco
 
-+ */apiarios:* Retorna uma lista com todos os apiários cadastrados no sistema.
++ <b>/apiarios:</b> Retorna uma lista com todos os apiários cadastrados no sistema.
