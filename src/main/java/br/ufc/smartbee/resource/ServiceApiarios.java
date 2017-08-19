@@ -14,8 +14,6 @@ public class ServiceApiarios {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public String TodosApiarios() {	
-		return new GenericDAO().getListaEntidade(Apiario.class);
+		return new GenericDAO<>().getListaEntidade(Apiario.class);
 	}
-
-
 }
