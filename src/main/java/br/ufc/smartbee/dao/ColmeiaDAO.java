@@ -1,29 +1,29 @@
 package br.ufc.smartbee.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
-import com.google.gson.Gson;
 
 import br.ufc.smartbee.modelo.Colmeias_Cadastradas;
 import br.ufc.smartbee.util.GsonConverter;
 import br.ufc.smartbee.util.JPAUtil;
 
-public class ColmeiaDAO {
+public class ColmeiaDAO<T> {
 
 	EntityManager em = JPAUtil.createEntityManager();
 
 	// RETORNA UM JSON COM UM OBJETO COLMEIA SERIALIZADO
 	public String exibeColmeia(String idColmeia) {
-		try {
-			Query query = em.createQuery("select cc from Colmeias_Cadastradas cc where cc.idColmeia=:idcolmeia", Colmeias_Cadastradas.class);
-			query.setParameter("idcolmeia", idColmeia);
-			List<Colmeias_Cadastradas> cc = query.getResultList();
-			return new GsonConverter().converteColmeia(cc.get(0));
+		try {	
+			return new GsonConverter().converteColmeias(em.find(Colmeias_Cadastradas.class, idColmeia));
 		} finally {
 			em.close();
 		}
 	}
+	public String getLastCollectHivebee(String idColmeia) {
+		Query query = em.createQuery("SELECT c from Colmeia c where amostra = (SELECT max(amostra) from Colmeia where entityId=:idColmeia)");
+		query.setParameter("idColmeia", idColmeia);
+		return new GsonConverter().converteColmeias(query.getSingleResult());
+	}
+	
+	
 }
