@@ -20,17 +20,17 @@ public class Colmeia {
 	private String data_md;
 	private String hora;
 	private String hora_md;
-	private Float som;
+	private Double som;
 	private String som_md;
-	private Float temperatura;
+	private Double temperatura;
 	private String temperatura_md;
-	private Float umidade;
+	private Double umidade;
 	private String umidade_md;
-	private Float dioxido;
+	private Double dioxido;
 	private String dioxido_md;
-	private Float tensaocolmeia;
+	private Double tensaocolmeia;
 	private String tensaocolmeia_md;
-	private Float tensaorepetidor;
+	private Double tensaorepetidor;
 	private String tensaorepetidor_md;
 
 	public Long getAmostra() {
@@ -105,11 +105,11 @@ public class Colmeia {
 		this.hora_md = hora_md;
 	}
 
-	public float getSom() {
+	public Double getSom() {
 		return som;
 	}
 
-	public void setSom(float som) {
+	public void setSom(Double som) {
 		this.som = som;
 	}
 
@@ -121,11 +121,11 @@ public class Colmeia {
 		this.som_md = som_md;
 	}
 
-	public float getTemperatura() {
+	public Double getTemperatura() {
 		return temperatura;
 	}
 
-	public void setTemperatura(float temperatura) {
+	public void setTemperatura(Double temperatura) {
 		this.temperatura = temperatura;
 	}
 
@@ -137,11 +137,11 @@ public class Colmeia {
 		this.temperatura_md = temperatura_md;
 	}
 
-	public float getUmidade() {
+	public Double getUmidade() {
 		return umidade;
 	}
 
-	public void setUmidade(float umidade) {
+	public void setUmidade(Double umidade) {
 		this.umidade = umidade;
 	}
 
@@ -153,11 +153,11 @@ public class Colmeia {
 		this.umidade_md = umidade_md;
 	}
 
-	public float getDioxido() {
+	public Double getDioxido() {
 		return dioxido;
 	}
 
-	public void setDioxido(float dioxido) {
+	public void setDioxido(Double dioxido) {
 		this.dioxido = dioxido;
 	}
 
@@ -169,11 +169,11 @@ public class Colmeia {
 		this.dioxido_md = dioxido_md;
 	}
 
-	public float getTensaocolmeia() {
+	public Double getTensaocolmeia() {
 		return tensaocolmeia;
 	}
 
-	public void setTensaocolmeia(float tensaocolmeia) {
+	public void setTensaocolmeia(Double tensaocolmeia) {
 		this.tensaocolmeia = tensaocolmeia;
 	}
 
@@ -185,11 +185,11 @@ public class Colmeia {
 		this.tensaocolmeia_md = tensaocolmeia_md;
 	}
 
-	public float getTensaorepetidor() {
+	public Double getTensaorepetidor() {
 		return tensaorepetidor;
 	}
 
-	public void setTensaorepetidor(float tensaorepetidor) {
+	public void setTensaorepetidor(Double tensaorepetidor) {
 		this.tensaorepetidor = tensaorepetidor;
 	}
 

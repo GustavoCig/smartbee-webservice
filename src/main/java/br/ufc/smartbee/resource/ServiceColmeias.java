@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import br.ufc.smartbee.dao.ColmeiaDAO;
 import br.ufc.smartbee.dao.GenericDAO;
 import br.ufc.smartbee.modelo.Colmeias_Cadastradas;
+import br.ufc.smartbee.util.TiposSensoriados;
 
 @Path("/colmeias")
 public class ServiceColmeias {
@@ -33,5 +34,13 @@ public class ServiceColmeias {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String dadosColetadosPorColmeia(@PathParam("id") String idColmeia) {
 		return new ColmeiaDAO<>().getLastCollectHivebee(idColmeia);
+	}
+
+	// LISTA DADOS DETALHADOS SOBRE OS VALORES MONITORADOS
+	@GET
+	@Path("{id}/{medida}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String infoColmeia(@PathParam("id") String idColmeia, @PathParam("medida") TiposSensoriados medida) {
+		return new ColmeiaDAO<>().getAvgMinMaxAtual(idColmeia, "temperatura");
 	}
 }

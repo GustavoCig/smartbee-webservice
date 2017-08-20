@@ -11,8 +11,7 @@ import br.ufc.smartbee.util.JPAUtil;
 public class GenericDAO<T> {
 	EntityManager em = JPAUtil.createEntityManager();
 	
-	public String getListaEntidade(Class<?> classe) {
-		
+	public String getListaEntidade(Class<?> classe) {		
 		try {
 			Session session = em.unwrap(Session.class);
 			Criteria criteria = session.createCriteria(classe);
