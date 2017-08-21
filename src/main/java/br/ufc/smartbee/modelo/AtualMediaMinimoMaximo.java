@@ -1,17 +1,17 @@
 package br.ufc.smartbee.modelo;
 
 public class AtualMediaMinimoMaximo {
-	private Double media;
+	private Object media;
 	private Double minimo;
 	private Double maximo;
 	private Double atual;
 
-	public Double getMedia() {
+	public Object getMedia() {
 		return media;
 	}
 
-	public void setMedia(Double media) {
-		this.media = media;
+	public void setMedia(Object object) {
+		this.media = object;
 	}
 
 	public Double getMinimo() {

@@ -14,14 +14,13 @@ public class Colmeias_Cadastradas {
 	@NotNull
 	private String datacriacao;
 	private Integer numerocoletas;
-	@ManyToOne
-	private Apiario idApiario;
+	private Long idApiario;
 
-	public Apiario getIdApiario() {
+	public Long getIdApiario() {
 		return idApiario;
 	}
 
-	public void setIdApiario(Apiario idApiario) {
+	public void setIdApiario(Long idApiario) {
 		this.idApiario = idApiario;
 	}
 

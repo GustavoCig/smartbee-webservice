@@ -2,9 +2,8 @@ package br.ufc.smartbee.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 import br.ufc.smartbee.modelo.AtualMediaMinimoMaximo;
-import br.ufc.smartbee.modelo.Colmeia;
+import br.ufc.smartbee.modelo.Coleta;
 import br.ufc.smartbee.modelo.Colmeias_Cadastradas;
 import br.ufc.smartbee.util.GsonConverter;
 import br.ufc.smartbee.util.JPAUtil;
@@ -25,10 +24,13 @@ public class ColmeiaDAO<T> {
 	public String getLastCollectHivebee(String idColmeia) {
 		try {
 			Query query = em.createQuery(
-					"SELECT c from Colmeia c where amostra = (SELECT max(amostra) from Colmeia where entityId=:idColmeia)",
-					Colmeia.class);
-			query.setParameter("idColmeia", idColmeia);
-			return new GsonConverter().converteColmeias(query.getSingleResult());
+					"SELECT c from Coleta c where amostra = (SELECT max(amostra) from Coleta where idColmeia=:pidColmeia)",
+					Coleta.class);
+			query.setParameter("pidColmeia", idColmeia);
+			Coleta coleta = (Coleta) query.getSingleResult();
+			return new GsonConverter().converteColmeias(coleta);
+		} catch (Exception e) {
+			return e.getLocalizedMessage();
 		} finally {
 			em.close();
 		}
@@ -38,23 +40,23 @@ public class ColmeiaDAO<T> {
 		try {
 			AtualMediaMinimoMaximo ammm = new AtualMediaMinimoMaximo();
 			// PEGA MEDIA
-			String media = "select avg(" + medida + ") from Colmeia where EntityId='" + idColmeia + "'";
+			String media = "select avg(" + medida + ") from Coleta where idColmeia='" + idColmeia + "'";
 			Query query = em.createQuery(media);
-			ammm.setMedia((Double) query.getSingleResult());
-
+//			ammm.setMedia((Double) query.getSingleResult());
+			ammm.setMedia(query.getSingleResult());
 			// PEGA MAXIMO
-			String maximo = "select max(" + medida + ") from Colmeia where EntityId='" + idColmeia + "'";
+			String maximo = "select max(" + medida + ") from Coleta where idColmeia='" + idColmeia + "'";
 			query = em.createQuery(maximo);
 			ammm.setMaximo((Double) query.getSingleResult());
 
 			// PEGA MINIMO
-			String minimo = "select min(" + medida + ") from Colmeia where EntityId='" + idColmeia + "'";
+			String minimo = "select min(" + medida + ") from Coleta where idColmeia='" + idColmeia + "'";
 			query = em.createQuery(minimo);
 			ammm.setMinimo((Double) query.getSingleResult());
 
 			// PEGA ATUAL
 			String atual = "select (" + medida
-					+ ") from Colmeia where amostra=(SELECT max(amostra) from Colmeia where EntityId='" + idColmeia
+					+ ") from Coleta where amostra=(SELECT max(amostra) from Coleta where idColmeia='" + idColmeia
 					+ "')";
 			query = em.createQuery(atual);
 			ammm.setAtual((Double) query.getSingleResult());
