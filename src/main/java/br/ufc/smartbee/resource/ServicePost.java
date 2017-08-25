@@ -1,5 +1,6 @@
 package br.ufc.smartbee.resource;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,15 +14,15 @@ import br.ufc.smartbee.modelo.Coleta;
 public class ServicePost {
 
 	@POST
-	@Path("colmeia")
+	@Path("coleta")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response TodosApiarios(String jsonrecebido) {	
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response TodosApiarios(String jsonrecebido) {
 		try {
 			Coleta coleta = new Gson().fromJson(jsonrecebido, Coleta.class);
 			new CreateDAO().insereColeta(coleta);
 			return Response.ok().build();
 		} catch (Exception e) {
-			// TODO: handle exception
 			return Response.serverError().build();
 		}
 	}

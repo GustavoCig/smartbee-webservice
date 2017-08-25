@@ -2,7 +2,6 @@ package br.ufc.smartbee.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
