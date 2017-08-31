@@ -64,4 +64,11 @@ public class ServiceColmeias {
 	public String pegaColetasMinutos(@PathParam("id") String idColmeia, @PathParam("minuto") int tempominuto) {
 		return new Gson().toJson(new ColetaDAO().getLastCollectsMinuts(idColmeia, tempominuto)).replace("\\", "").replace("\"[", "[").replace("]\"", "]");
 	}
+	@GET
+	@Path("/tensao")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String pegaTensoes() {
+		return new Gson().toJson(new ColmeiaDAO<>().getTensao());
+	}
+	
 }

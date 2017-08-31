@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import br.ufc.smartbee.modelo.AtualMediaMinimoMaximo;
 import br.ufc.smartbee.modelo.Coleta;
 import br.ufc.smartbee.modelo.Colmeias_Cadastradas;
+import br.ufc.smartbee.modelo.UltimaVoltagem;
 import br.ufc.smartbee.util.GsonConverter;
 import br.ufc.smartbee.util.JPAUtil;
 
@@ -68,6 +69,15 @@ public class ColmeiaDAO<T> {
 		} finally {
 			em.close();
 		}
+	}
+	public UltimaVoltagem getTensao() {
+		UltimaVoltagem ultimaVoltagem = new UltimaVoltagem();
+		String sql = "SELECT c FROM Coleta c ORDER BY amostra DESC";
+		Query query = em.createQuery(sql).setMaxResults(1);
+		Coleta coleta = (Coleta) query.getSingleResult();
+		ultimaVoltagem.setDatahora(coleta.getDatahora());
+		ultimaVoltagem.setVoltagem(coleta.getTensaorepetidor());
+		return ultimaVoltagem;
 	}
 
 }
