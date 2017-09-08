@@ -107,5 +107,4 @@ public class Coleta {
 	public void setTensaogateway(Double tensaogateway) {
 		this.tensaogateway = tensaogateway;
 	}
-
 }

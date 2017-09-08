@@ -9,11 +9,13 @@ import javax.ws.rs.core.Response;
 import com.google.gson.Gson;
 import br.ufc.smartbee.dao.CreateDAO;
 import br.ufc.smartbee.modelo.Coleta;
+import br.ufc.smartbee.seguranca.Seguro;
 
 @Path("add")
-public class ServicePost {
+public class ServiceColeta {
 
 	@POST
+	@Seguro
 	@Path("coleta")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
