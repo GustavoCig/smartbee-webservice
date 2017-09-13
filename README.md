@@ -218,10 +218,10 @@ After processing returns Status codes indicating the error in authentication or 
 
 #### Authentication
 
-To authenticate to the system it is necessary to have a token that the system makes available, it is possible to obtain this token following the steps indicated in the previous section. After purchased token, each request that is made to the system is required to send a header with Authentication key and value <b> "Bearer + \<value of token\>" </b>. Below is an example of how the request should be made.
+To authenticate to the system it is necessary to have a token that the system makes available, it is possible to obtain this token following the steps indicated in the previous section. After purchased token, each request that is made to the system is required to send a header with Authorization key and value <b> "Bearer + \<value of token\>" </b>. Below is an example of how the request should be made.
 
 ```html
 Header 
-    key = Authentication 
+    key = Authorization 
     value = Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MDUzMjI0ODEsImlzcyI6Im
 ```
