@@ -26,7 +26,7 @@ public class ServiceCadastro {
 				//NÃO EXISTE LOGIN COM NOME CORRESPONDENTE
 				create.insereCadastro(novacredecial);
 				System.out.println("Entrou aqui -  Ok");
-				return Response.ok().build();
+				return Response.ok(novacredecial).build();
 			}else {
 				System.out.println("Entrou aqui -  Conflito");
 				//LOGIN EXISTENTE
