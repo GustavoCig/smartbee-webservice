@@ -168,7 +168,7 @@ The server receives a serialized object in Json as shown below and saved to the 
 
 This end point returns 3 possible Status Code's as a response:
 
->> Successful registration: Status Code 200 + Json object with the data sent to the server.
+>> Successful registration: Status Code 200.
 
 
 >> Email already used by another user: Status Code 409 (Conflict).
@@ -177,10 +177,13 @@ This end point returns 3 possible Status Code's as a response:
 >> Internal server error: Status Code 500
  
 ```json
-{  
-  "login":"string",
-  "senha":"string",
-  "nome":"string"
+{
+  "name":"string",
+  "email":"string",
+  "address":"string",
+  "phone":"string",
+  "cellphone":"string",
+  "password":"string"
 }
 ```
 
