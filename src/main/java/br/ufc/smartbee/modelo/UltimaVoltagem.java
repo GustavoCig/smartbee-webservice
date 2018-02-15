@@ -3,14 +3,14 @@ package br.ufc.smartbee.modelo;
 import java.util.Calendar;
 
 public class UltimaVoltagem {
-	private Double voltagemRepetidor;
+	private String voltagemRepetidor;
 	private Calendar datahora;
 
-	public Double getVoltagem() {
+	public String getVoltagem() {
 		return voltagemRepetidor;
 	}
 
-	public void setVoltagem(Double voltagem) {
+	public void setVoltagem(String voltagem) {
 		this.voltagemRepetidor = voltagem;
 	}
 

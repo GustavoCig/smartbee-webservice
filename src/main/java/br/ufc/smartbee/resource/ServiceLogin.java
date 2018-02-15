@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.crypto.spec.SecretKeySpec;
 import javax.persistence.EntityManager;
 import javax.ws.rs.Consumes;
@@ -16,7 +15,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.xml.bind.DatatypeConverter;
 import com.google.gson.Gson;
-import br.ufc.smartbee.modelo.Credencial;
+import br.ufc.smartbee.dao.SignupDAO;
+import br.ufc.smartbee.modelo.Users;
 import br.ufc.smartbee.util.Criptografia;
 import br.ufc.smartbee.util.JPAUtil;
 import io.jsonwebtoken.Claims;
@@ -24,8 +24,8 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@Path("/login")
-public class LoginService {
+@Path("login")
+public class ServiceLogin {
 
 	private static final String FRASE_SEGREDO = "smartbee";
 
@@ -34,33 +34,53 @@ public class LoginService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response fazerLogin(String credenciaisJson) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		EntityManager em = JPAUtil.createEntityManager();
-
 		try {
-			Gson gson = new Gson();
-			Credencial credencial = gson.fromJson(credenciaisJson, Credencial.class);
-			Credencial consultaBanco = em.find(Credencial.class, credencial.getLogin());
-			String senhahash = Criptografia.toCript(credencial.getSenha());
-			System.out.println("hash "+senhahash);
 
-			// SE NAO EXISTIR USUARIO
-			if (consultaBanco == null) {
-				return Response.status(Status.BAD_REQUEST).build();
+			Users credencial = new Gson().fromJson(credenciaisJson, Users.class);
 
-			} else if (consultaBanco.getAtivado().equals("N")) {
-				return Response.status(Status.FORBIDDEN).build();
-				
-			} else if (!senhahash.equals(consultaBanco.getSenha())) {
-				return Response.status(Status.UNAUTHORIZED).build();
-
+			if (credencial.getRemember_token() == null || credencial.getRemember_token().isEmpty()) {
+				// SE NAO FOR ENVIADO UM TOKEN NO JSON
+				return firstAccess(credencial);
 			} else {
-				credencial.setToken(gerarToken(credencial.getLogin(), 1));
-				return Response.ok(gson.toJson(credencial)).build();
+				return loginByToken(credencial);
 			}
-
 		} finally {
 			em.close();
 		}
 
+	}
+
+	private Response firstAccess(Users user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		Users consultaBanco = new SignupDAO().getUserByEmail(user.getEmail());
+		String senhahash = Criptografia.toCript(user.getPassword());
+
+		// SE NAO EXISTIR USUARIO
+		if (consultaBanco == null) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		// ERRO NA SENHA INFORMADA
+		else if (!senhahash.equals(consultaBanco.getPassword())) {
+			return Response.status(Status.UNAUTHORIZED).build();	
+			//Status.UNAUTHORIZED
+		}
+		// USUARIO AINDA NAO TEM PERMISSAO PARA ACESSO
+		else if (consultaBanco.getConfirmed() == 0) {
+			return Response.status(Status.FORBIDDEN).build();
+		} else {
+			String token = gerarToken(user.getEmail(), 365);
+			consultaBanco.setRemember_token(token);
+			new SignupDAO().addTokenToUser(consultaBanco.getId(), token);
+			return Response.ok(new Gson().toJson(consultaBanco)).build();
+		}
+	}
+
+	private Response loginByToken(Users user) {
+		Users consultaBanco = new SignupDAO().getUserByToken(user.getRemember_token());
+		if (!(consultaBanco == null)) {
+			return Response.ok((new Gson().toJson(consultaBanco))).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
 	}
 
 	private String gerarToken(String login, Integer expiraEmDias) {

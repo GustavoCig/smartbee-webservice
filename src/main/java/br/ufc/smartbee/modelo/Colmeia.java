@@ -4,200 +4,101 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 @Entity
+@Table(name = "colmeia")
 public class Colmeia {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long amostra;
-	private String recvTime;
-	private String fiwareServicePath;
-	private String entityId;
-	private String entityType;
-	private String data;
-	private String data_md;
-	private String hora;
-	private String hora_md;
-	private Double som;
-	private String som_md;
-	private Double temperatura;
-	private String temperatura_md;
-	private Double umidade;
-	private String umidade_md;
-	private Double dioxido;
-	private String dioxido_md;
-	private Double tensaocolmeia;
-	private String tensaocolmeia_md;
-	private Double tensaorepetidor;
-	private String tensaorepetidor_md;
-
-	public Long getAmostra() {
-		return amostra;
+	private Long id;
+	@NotNull
+	private String nome;
+	@NotNull
+	private Integer caixilho;
+	private String latitude;
+	private String longitude;
+	@ManyToOne
+	@JoinColumn(name="colmeia_tipo_id", referencedColumnName="id")
+	private Colmeia_tipo colmeia_tipo;
+	@ManyToOne
+	@JoinColumn(name="colmeia_fundo_id", referencedColumnName="id")
+	private Colmeia_fundo colmeia_fundo;
+	@ManyToOne
+	@JoinColumn(name="colmeia_origem_id", referencedColumnName="id")
+	private Colmeia_origem colmeia_origem;
+	
+	@ManyToOne
+	@JoinColumn(name="login_cadastro", referencedColumnName="id")
+	private Users login_cadastro;
+	@ManyToOne
+	@JoinColumn(name="login_alteracao", referencedColumnName="id")
+	private Users login_alteracao;
+	
+	public Long getId() {
+		return id;
 	}
-
-	public void setAmostra(Long amostra) {
-		this.amostra = amostra;
+	public void setId(Long id) {
+		this.id = id;
 	}
-
-	public String getRecvTime() {
-		return recvTime;
+	public String getNome() {
+		return nome;
 	}
-
-	public void setRecvTime(String recvTime) {
-		this.recvTime = recvTime;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-
-	public String getFiwareServicePath() {
-		return fiwareServicePath;
+	public Integer getCaixilho() {
+		return caixilho;
 	}
-
-	public void setFiwareServicePath(String fiwareServicePath) {
-		this.fiwareServicePath = fiwareServicePath;
+	public void setCaixilho(Integer caixilho) {
+		this.caixilho = caixilho;
 	}
-
-	public String getEntityId() {
-		return entityId;
+	public String getLatitude() {
+		return latitude;
 	}
-
-	public void setEntityId(String entityId) {
-		this.entityId = entityId;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
-
-	public String getEntityType() {
-		return entityType;
+	public String getLongitude() {
+		return longitude;
 	}
-
-	public void setEntityType(String entityType) {
-		this.entityType = entityType;
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
-
-	public String getData() {
-		return data;
+	public Colmeia_tipo getColmeia_tipo_id() {
+		return colmeia_tipo;
 	}
-
-	public void setData(String data) {
-		this.data = data;
+	public void setColmeia_tipo_id(Colmeia_tipo colmeia_tipo_id) {
+		this.colmeia_tipo = colmeia_tipo_id;
 	}
-
-	public String getData_md() {
-		return data_md;
+	public Colmeia_fundo getColmeia_fundo_id() {
+		return colmeia_fundo;
 	}
-
-	public void setData_md(String data_md) {
-		this.data_md = data_md;
+	public void setColmeia_fundo_id(Colmeia_fundo colmeia_fundo_id) {
+		this.colmeia_fundo = colmeia_fundo_id;
 	}
-
-	public String getHora() {
-		return hora;
+	public Colmeia_origem getColmeia_origem_id() {
+		return colmeia_origem;
 	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
+	public void setColmeia_origem_id(Colmeia_origem colmeia_origem_id) {
+		this.colmeia_origem = colmeia_origem_id;
 	}
-
-	public String getHora_md() {
-		return hora_md;
+	public Users getLogin_cadastro() {
+		return login_cadastro;
 	}
-
-	public void setHora_md(String hora_md) {
-		this.hora_md = hora_md;
+	public void setLogin_cadastro(Users login_cadastro) {
+		this.login_cadastro = login_cadastro;
 	}
-
-	public Double getSom() {
-		return som;
+	public Users getLogin_alteracao() {
+		return login_alteracao;
 	}
-
-	public void setSom(Double som) {
-		this.som = som;
+	public void setLogin_alteracao(Users login_alteracao) {
+		this.login_alteracao = login_alteracao;
 	}
-
-	public String getSom_md() {
-		return som_md;
-	}
-
-	public void setSom_md(String som_md) {
-		this.som_md = som_md;
-	}
-
-	public Double getTemperatura() {
-		return temperatura;
-	}
-
-	public void setTemperatura(Double temperatura) {
-		this.temperatura = temperatura;
-	}
-
-	public String getTemperatura_md() {
-		return temperatura_md;
-	}
-
-	public void setTemperatura_md(String temperatura_md) {
-		this.temperatura_md = temperatura_md;
-	}
-
-	public Double getUmidade() {
-		return umidade;
-	}
-
-	public void setUmidade(Double umidade) {
-		this.umidade = umidade;
-	}
-
-	public String getUmidade_md() {
-		return umidade_md;
-	}
-
-	public void setUmidade_md(String umidade_md) {
-		this.umidade_md = umidade_md;
-	}
-
-	public Double getDioxido() {
-		return dioxido;
-	}
-
-	public void setDioxido(Double dioxido) {
-		this.dioxido = dioxido;
-	}
-
-	public String getDioxido_md() {
-		return dioxido_md;
-	}
-
-	public void setDioxido_md(String dioxido_md) {
-		this.dioxido_md = dioxido_md;
-	}
-
-	public Double getTensaocolmeia() {
-		return tensaocolmeia;
-	}
-
-	public void setTensaocolmeia(Double tensaocolmeia) {
-		this.tensaocolmeia = tensaocolmeia;
-	}
-
-	public String getTensaocolmeia_md() {
-		return tensaocolmeia_md;
-	}
-
-	public void setTensaocolmeia_md(String tensaocolmeia_md) {
-		this.tensaocolmeia_md = tensaocolmeia_md;
-	}
-
-	public Double getTensaorepetidor() {
-		return tensaorepetidor;
-	}
-
-	public void setTensaorepetidor(Double tensaorepetidor) {
-		this.tensaorepetidor = tensaorepetidor;
-	}
-
-	public String getTensaorepetidor_md() {
-		return tensaorepetidor_md;
-	}
-
-	public void setTensaorepetidor_md(String tensaorepetidor_md) {
-		this.tensaorepetidor_md = tensaorepetidor_md;
-	}
+	
+	
+	
 }

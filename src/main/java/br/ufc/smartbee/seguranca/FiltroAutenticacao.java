@@ -22,7 +22,7 @@ import javax.ws.rs.core.SecurityContext;
 
 import javax.ws.rs.ext.Provider;
 
-import br.ufc.smartbee.resource.LoginService;
+import br.ufc.smartbee.resource.ServiceLogin;
 import io.jsonwebtoken.Claims;
 
 //Defini que a @seguro que vai utilizar essa classe
@@ -78,7 +78,7 @@ public class FiltroAutenticacao implements ContainerRequestFilter {
 
 			// método que verifica se o token é valido ou não
 
-			Claims claims = new LoginService().validaToken(token);
+			Claims claims = new ServiceLogin().validaToken(token);
 
 			// Caso não for valido vai retornar um objeto nulo e executar um exception
 

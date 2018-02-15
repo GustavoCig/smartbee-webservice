@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-@Entity
 public class Colmeias_Cadastradas {
 	@Id
 	private String idColmeia;

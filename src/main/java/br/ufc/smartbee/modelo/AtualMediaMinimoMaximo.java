@@ -1,40 +1,40 @@
 package br.ufc.smartbee.modelo;
 
 public class AtualMediaMinimoMaximo {
-	private Double media;
-	private Double minimo;
-	private Double maximo;
-	private Double atual;
+	private String media;
+	private String minimo;
+	private String maximo;
+	private String atual;
 
-	public Double getMedia() {
+	public String getMedia() {
 		return media;
 	}
 
-	public void setMedia(Double object) {
+	public void setMedia(String object) {
 		this.media = object;
 	}
 
-	public Double getMinimo() {
+	public String getMinimo() {
 		return minimo;
 	}
 
-	public void setMinimo(Double minimo) {
+	public void setMinimo(String minimo) {
 		this.minimo = minimo;
 	}
 
-	public Double getMaximo() {
+	public String getMaximo() {
 		return maximo;
 	}
 
-	public void setMaximo(Double maximo) {
+	public void setMaximo(String maximo) {
 		this.maximo = maximo;
 	}
 
-	public Double getAtual() {
+	public String getAtual() {
 		return atual;
 	}
 
-	public void setAtual(Double atual) {
+	public void setAtual(String atual) {
 		this.atual = atual;
 	}
 
