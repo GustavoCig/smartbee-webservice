@@ -151,5 +151,9 @@ public class Users {
 	public void setUpdated_at(Calendar updated_at) {
 		this.updated_at = updated_at;
 	}
+	
+	public String toString() {
+		return "Id - "+this.getId()+"; name - "+this.getName()+"; email - "+this.getEmail()+"; address - "+this.getAddress()+"; phone - "+this.getPhone()+"; cellphone - "+this.getCellphone()+"; password - "+this.getPassword();
+	}
 
 }

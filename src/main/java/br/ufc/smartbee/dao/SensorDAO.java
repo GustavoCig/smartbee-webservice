@@ -3,9 +3,12 @@ package br.ufc.smartbee.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.Table;
+
 import br.ufc.smartbee.modelo.Sensor;
 import br.ufc.smartbee.util.JPAUtil;
 
+@Table(name = "sensor")
 public class SensorDAO {
 	EntityManager em = JPAUtil.createEntityManager();
 

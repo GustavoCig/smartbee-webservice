@@ -29,7 +29,7 @@ public class ColmeiaDAO {
 	// RETORNA UM JSON COM UM OBJETO COLMEIA SERIALIZADO
 	public String exibeColmeia(String idColmeia) {
 		try {
-			return new GsonConverter().converteColmeias(em.find(Colmeias_Cadastradas.class, idColmeia));
+			return new GsonConverter().converteColmeias(em.find(Colmeia.class, Long.valueOf(idColmeia)));
 		} finally {
 			em.close();
 		}

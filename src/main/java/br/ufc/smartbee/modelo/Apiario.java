@@ -18,7 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 public class Apiario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idApiario;
+	private Integer id;
 	private String nome;
 	private String endereco;
 	private String latitude;
@@ -39,11 +39,11 @@ public class Apiario {
 	private Calendar deleted_at;
 
 	public Integer getIdApiario() {
-		return idApiario;
+		return id;
 	}
 
 	public void setIdApiario(Integer idApiario) {
-		this.idApiario = idApiario;
+		this.id = idApiario;
 	}
 
 	public String getNome() {

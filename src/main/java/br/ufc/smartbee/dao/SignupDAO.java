@@ -64,7 +64,6 @@ public class SignupDAO {
 		Users users = em.find(Users.class, updateuser.getId());
 		em.getTransaction().begin();
 		users = setFields(users, updateuser);
-		users = updateuser;
 		users.setUpdated_at(Calendar.getInstance());
 		em.merge(users);
 		em.getTransaction().commit();
@@ -73,23 +72,26 @@ public class SignupDAO {
 	public Users setFields(Users old, Users update) {
 		Users tosave = new Users();
 		tosave = update;
-		if (!(update.getName() == null) || !(update.getName().isEmpty())) {
+		if ((update.getName() == null) || (update.getName().isEmpty())) {
 			tosave.setName(old.getName());
 		}
-		if (!(update.getEmail() == null) || !(update.getEmail().isEmpty())) {
+		if ((update.getEmail() == null) || (update.getEmail().isEmpty())) {
 			tosave.setEmail(old.getEmail());
 		}
-		if (!(update.getAddress() == null) || !(update.getAddress().isEmpty())) {
+		if ((update.getAddress() == null) || (update.getAddress().isEmpty())) {
 			tosave.setAddress(old.getAddress());
 		}
-		if (!(update.getPhone() == null) || !(update.getPhone().isEmpty())) {
+		if ((update.getPhone() == null) || (update.getPhone().isEmpty())) {
 			tosave.setPhone(old.getPhone());
 		}
-		if (!(update.getCellphone() == null) || !(update.getCellphone().isEmpty())) {
+		if ((update.getCellphone() == null) || (update.getCellphone().isEmpty())) {
 			tosave.setCellphone(old.getCellphone());
 		}
-		if (!(update.getAddress() == null) || !(update.getAddress().isEmpty())) {
-			
+		if ((update.getAddress() == null) || (update.getAddress().isEmpty())) {
+			tosave.setAddress(old.getAddress());
+		}
+		if ((update.getPassword() == null) || (update.getPassword().isEmpty())) {
+			tosave.setPassword(old.getPassword());
 		}
 		tosave.setConfirmed(old.getConfirmed());
 		tosave.setAdmin(old.getAdmin());

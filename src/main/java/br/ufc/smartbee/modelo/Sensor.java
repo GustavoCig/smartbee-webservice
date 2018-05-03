@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +23,12 @@ public class Sensor {
 	private String modelo;
 	@NotNull
 	private String marca;
+	@ManyToOne
+	@JoinColumn(name="login_cadastro", referencedColumnName="id")
+	private Users login_cadastro;
+	@ManyToOne
+	@JoinColumn(name="login_alteracao", referencedColumnName="id")
+	private Users login_alteracao;
 	
 	
 	public Integer getId() {
@@ -52,6 +60,18 @@ public class Sensor {
 	}
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+	public Users getLogin_cadastro() {
+		return login_cadastro;
+	}
+	public void setLogin_cadastro(Users login_cadastro) {
+		this.login_cadastro = login_cadastro;
+	}
+	public Users getLogin_alteracao() {
+		return login_alteracao;
+	}
+	public void setLogin_alteracao(Users login_alteracao) {
+		this.login_alteracao = login_alteracao;
 	}
 	
 }

@@ -3,11 +3,13 @@ package br.ufc.smartbee.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
 import br.ufc.smartbee.modelo.Apiario;
 import br.ufc.smartbee.util.JPAUtil;
 
+@Table(name = "sensor")
 public class ApiarioDAO {
 	EntityManager em = JPAUtil.createEntityManager();
 	
